@@ -4,16 +4,17 @@
  * and open the template in the editor.
  */
 package lambda.demo;
-import java.util.*;
+
 /**
  *
  * @author kmhasan
  */
-public class CreditHoursComparator implements Comparator<Course> {
+public class PrinterThread implements Runnable {
 
     @Override
-    public int compare(Course o1, Course o2) {
-        return (int) ((o1.getCreditHours() - o2.getCreditHours()) * 100);
+    public void run() {
+        for (int i = 0; i < 10; i++)
+            System.out.println(i);
     }
-    
+
 }

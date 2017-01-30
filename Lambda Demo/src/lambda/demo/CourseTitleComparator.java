@@ -4,16 +4,17 @@
  * and open the template in the editor.
  */
 package lambda.demo;
+
 import java.util.*;
 /**
  *
  * @author kmhasan
  */
-public class CreditHoursComparator implements Comparator<Course> {
+public class CourseTitleComparator implements Comparator<Course> {
 
     @Override
     public int compare(Course o1, Course o2) {
-        return (int) ((o1.getCreditHours() - o2.getCreditHours()) * 100);
+        return o1.getCourseTitle().compareTo(o2.getCourseTitle());
     }
     
 }

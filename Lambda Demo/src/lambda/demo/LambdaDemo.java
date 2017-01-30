@@ -34,9 +34,39 @@ public class LambdaDemo {
         coursesList.add(new Course("ENG1001", "Basic Composition", 0.0));
         //Collections.sort(coursesList);
         //Collections.sort(coursesList, new CreditHoursComparator());
-        // Task 1: Sort the courses based on course title
+        
+        // approach 1: we can create separate comparator classes
+        Collections.sort(coursesList, new CourseTitleComparator());
+        
+        // approach 2: use anonymous inner class
+        Collections.sort(coursesList, new Comparator<Course>() {
+            @Override
+            public int compare(Course o1, Course o2) {
+                return o1.getCourseTitle().compareTo(o2.getCourseTitle());
+            }
+        });
+        
+        // approach 3: use lambda expressions
+        Collections.sort(coursesList, 
+                (c1, c2) -> c1.getCourseCode().compareTo(c2.getCourseCode()));
+        
         for (Course c : coursesList)
             System.out.println(c);
+        
+        Thread printerThread1 = new Thread(new PrinterThread());
+        Thread printerThread2 = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                for (int i = 10; i < 20; i++)
+                    System.out.println(i);
+            }
+        });
+        // write this 3rd thread using lambda expressions
+        // print from 20 to 29
+        Thread printerThread3 = new Thread();
+        printerThread1.start();
+        printerThread2.start();
+        printerThread3.start();
     }
     
 }
