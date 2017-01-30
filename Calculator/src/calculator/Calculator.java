@@ -30,7 +30,7 @@ public class Calculator {
             if (operation.getOperationName().equals(operationName))
                 result = Operation.operate(number1, number2);
         */
-        result = Operation.getOperation(operationName).operate(number1, number2);
+        result = Operation.getOperation(operatorName).operate(number1, number2);
         
         /*
         switch (operatorName) {
