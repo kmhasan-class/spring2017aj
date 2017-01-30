@@ -63,7 +63,11 @@ public class LambdaDemo {
         });
         // write this 3rd thread using lambda expressions
         // print from 20 to 29
-        Thread printerThread3 = new Thread();
+        Thread printerThread3 = new Thread
+                (() -> {
+                    for (int i = 20; i < 30; i++)
+                        System.out.println(i);
+                });
         printerThread1.start();
         printerThread2.start();
         printerThread3.start();
