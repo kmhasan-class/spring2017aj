@@ -16,8 +16,10 @@ public class Operation implements Operable {
     
     static {
         operationsList = new ArrayList<>();
-        operationsList.add(new Operation("ADD"));
-        operationsList.add(new Operation("MULTIPLY"));
+        operationsList.add(new Operation("ADD", (number1, number2) -> number1 + number2));
+        operationsList.add(new Operation("MULTIPLY", (number1, number2) -> number1 * number2));
+        operationsList.add(new Operation("SUBTRACT", (number1, number2) -> number1 - number2));
+        operationsList.add(new Operation("DIVIDE", (number1, number2) -> number1 / number2));
     }
 
     public Operation(String operationName, Operable operable) {
