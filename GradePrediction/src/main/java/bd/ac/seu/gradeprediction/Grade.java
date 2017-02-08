@@ -35,6 +35,26 @@ public class Grade {
         return grade;
     }
 
+    public double toNumericGrade() {
+        double value = 0.0;
+        
+        switch (grade) {
+            case "A+": value = 4.00; break;
+            case "A" : value = 3.75; break;
+            case "A-": value = 3.50; break;
+            case "B+": value = 3.25; break;
+            case "B" : value = 3.00; break;
+            case "B-": value = 2.75; break;
+            case "C+": value = 2.50; break;
+            case "C" : value = 2.25; break;
+            case "D" : value = 2.00; break;
+            case "F" : value = 0.00; break;
+            default  : value = 0.00; break;
+        }
+        
+        return value;
+    }
+    
     @Override
     public String toString() {
         return "Grade{" + "course=" + course + ", semesterId=" + semesterId + ", grade=" + grade + '}';

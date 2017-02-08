@@ -21,7 +21,7 @@ public class GradePrediction {
             List<Course> coursesList = new ArrayList<>();
             Map<Integer, Student> studentsMap = new HashMap<>();
             Map<String, Course> coursesMap = new HashMap<>();
-            
+
             Connection connection = ConnectionSingleton.getConnection();
 
             Statement statement = connection.createStatement();
@@ -64,26 +64,16 @@ public class GradePrediction {
                 Grade gradeObject = new Grade(course, semesterId, grade);
                 student.getGradesList().add(gradeObject);
             }
-            long count = studentsList.get(0).getGradesList().stream().count();
-            System.out.println(studentsList.get(0));
-            System.out.println(count);
             
+            for (Student student : studentsList)
+                System.out.println(student.getCgpa());
+            
+            for (Student student : studentsList)
+                student.computeCgpa();
+
             // print a list of students who have failed at least 3 times
             // do it with streams
             
-/*
-            // Stream example
-            List<Student> filteredList = studentsList.stream()
-                    .filter(s -> s.getStudentName().length() > 15)
-                    .filter(s -> s.getStudentId() > 14900)
-                    //.sorted()
-                    .collect(Collectors.toList());
-            
-            filteredList.forEach(System.out::println);
-            
-            long count = filteredList.stream().count();
-            System.out.println(count + " entries");
-*/
         } catch (SQLException ex) {
             //Logger.getLogger(GradePrediction.class.getName()).log(Level.SEVERE, null, ex);
         }
