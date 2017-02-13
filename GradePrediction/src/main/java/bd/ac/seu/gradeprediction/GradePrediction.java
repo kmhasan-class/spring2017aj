@@ -36,8 +36,10 @@ public class GradePrediction {
 
             coursesList = courseDAO.getCourses();
             coursesList.forEach(course -> coursesMap.put(course.getCourseCode(), course));
-            
-            studentsList.forEach(System.out::println);
+
+            System.out.println(studentDAO.getStudent(2441139));
+            //studentDAO.addStudent(new Student(999999, "John Doe"));
+            //studentsList.forEach(System.out::println);
             
             /*
             // Create a DAO for the grades

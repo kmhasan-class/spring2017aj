@@ -27,11 +27,11 @@ public class StudentDAOMySQLImplementation implements StudentDAO {
         List<Student> studentsList = new ArrayList<>();
         String query = "SELECT * FROM student";
         Statement statement;
-        
+
         try {
             statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(query);
-            
+
             while (resultSet.next()) {
                 int studentId = resultSet.getInt("studentId");
                 String studentName = resultSet.getString("studentName");
@@ -41,18 +41,44 @@ public class StudentDAOMySQLImplementation implements StudentDAO {
         } catch (SQLException ex) {
             Logger.getLogger(StudentDAOMySQLImplementation.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         return studentsList;
     }
 
     @Override
     public Student getStudent(int studentId) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //String query = "SELECT * FROM student WHERE studentId = " + studentId;
+        String query = "SELECT * FROM student WHERE studentId = ?;";
+        // Note to self: debug prepared statement for this method
+        PreparedStatement statement;
+        Student student = null;
+        try {
+            statement = connection.prepareStatement(query);
+            statement.setString(1, studentId + "");
+            System.out.println(statement);
+            ResultSet resultSet = statement.executeQuery(query);
+
+            if (resultSet.next()) {
+                student = new Student(studentId, resultSet.getString("studentName"));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(StudentDAOMySQLImplementation.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return student;
     }
 
     @Override
     public void addStudent(Student student) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String query = "INSERT INTO student VALUES(?, ?);";
+        PreparedStatement statement;
+        try {
+            statement = connection.prepareStatement(query);
+            statement.setString(1, "" + student.getStudentId());
+            statement.setString(2, student.getStudentName());
+            statement.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(StudentDAOMySQLImplementation.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @Override
