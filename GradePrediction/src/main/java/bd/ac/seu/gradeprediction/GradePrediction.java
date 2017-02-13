@@ -16,6 +16,8 @@ import java.util.stream.*;
 public class GradePrediction {
     public GradePrediction() {
         StudentDAO studentDAO = new StudentDAOMySQLImplementation();
+        CourseDAO courseDAO = new CourseDAOMySQLImplementation();
+        
         String query;
         ResultSet resultSet;
         
@@ -32,19 +34,13 @@ public class GradePrediction {
             studentsList = studentDAO.getStudents();
             studentsList.forEach(student -> studentsMap.put(student.getStudentId(), student));
 
-            query = "SELECT * FROM course;";
+            coursesList = courseDAO.getCourses();
+            coursesList.forEach(course -> coursesMap.put(course.getCourseCode(), course));
             
-            resultSet = statement.executeQuery(query);
+            studentsList.forEach(System.out::println);
             
-            while (resultSet.next()) {
-                String courseCode = resultSet.getString("courseCode");
-                String courseTitle = resultSet.getString("courseTitle");
-                double credits = resultSet.getDouble("credits");
-                Course course = new Course(courseCode, courseTitle, credits);
-                coursesList.add(course);
-                coursesMap.put(courseCode, course);
-            }
-
+            /*
+            // Create a DAO for the grades
             query = "SELECT * FROM grades;";
             
             resultSet = statement.executeQuery(query);
@@ -68,7 +64,7 @@ public class GradePrediction {
 
             // print a list of students who have failed at least 3 times
             // do it with streams
-            
+            */
         } catch (SQLException ex) {
             //Logger.getLogger(GradePrediction.class.getName()).log(Level.SEVERE, null, ex);
         }
