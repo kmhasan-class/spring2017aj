@@ -14,8 +14,11 @@ import java.util.stream.*;
  * @author kmhasan
  */
 public class GradePrediction {
-
     public GradePrediction() {
+        StudentDAO studentDAO = new StudentDAOMySQLImplementation();
+        String query;
+        ResultSet resultSet;
+        
         try {
             List<Student> studentsList = new ArrayList<>();
             List<Course> coursesList = new ArrayList<>();
@@ -25,17 +28,9 @@ public class GradePrediction {
             Connection connection = ConnectionSingleton.getConnection();
 
             Statement statement = connection.createStatement();
-            String query = "SELECT * FROM student;";
             
-            ResultSet resultSet = statement.executeQuery(query);
-
-            while (resultSet.next()) {
-                int id = resultSet.getInt("studentId");
-                String name = resultSet.getString("studentName");
-                Student student = new Student(id, name);
-                studentsList.add(student);
-                studentsMap.put(id, student);
-            }
+            studentsList = studentDAO.getStudents();
+            studentsList.forEach(student -> studentsMap.put(student.getStudentId(), student));
 
             query = "SELECT * FROM course;";
             
