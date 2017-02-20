@@ -12,6 +12,7 @@ package bd.ac.seu.gradeprediction;
 public class Grade {
     private Course course;
     private int semesterId;
+    // change the String type to enum GradeEntry type
     private String grade;
 
     public Grade() {

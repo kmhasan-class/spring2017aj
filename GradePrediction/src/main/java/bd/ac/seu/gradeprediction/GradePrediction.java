@@ -14,64 +14,38 @@ import java.util.stream.*;
  * @author kmhasan
  */
 public class GradePrediction {
+
     public GradePrediction() {
         StudentDAO studentDAO = new StudentDAOMySQLImplementation();
         CourseDAO courseDAO = new CourseDAOMySQLImplementation();
-        
+        GradeDAO gradeDAO;
+
         String query;
         ResultSet resultSet;
-        
-        try {
-            List<Student> studentsList = new ArrayList<>();
-            List<Course> coursesList = new ArrayList<>();
-            Map<Integer, Student> studentsMap = new HashMap<>();
-            Map<String, Course> coursesMap = new HashMap<>();
 
-            Connection connection = ConnectionSingleton.getConnection();
+        List<Student> studentsList = new ArrayList<>();
+        List<Course> coursesList = new ArrayList<>();
+        Map<Integer, Student> studentsMap = new HashMap<>();
+        Map<String, Course> coursesMap = new HashMap<>();
 
-            Statement statement = connection.createStatement();
-            
-            studentsList = studentDAO.getStudents();
-            studentsList.forEach(student -> studentsMap.put(student.getStudentId(), student));
+        studentsList = studentDAO.getStudents();
+        studentsList.forEach(student -> studentsMap.put(student.getStudentId(), student));
 
-            coursesList = courseDAO.getCourses();
-            coursesList.forEach(course -> coursesMap.put(course.getCourseCode(), course));
+        coursesList = courseDAO.getCourses();
+        coursesList.forEach(course -> coursesMap.put(course.getCourseCode(), course));
 
-            System.out.println(studentDAO.getStudent(2441139));
-            //studentDAO.addStudent(new Student(999999, "John Doe"));
-            //studentsList.forEach(System.out::println);
-            
-            /*
-            // Create a DAO for the grades
-            query = "SELECT * FROM grades;";
-            
-            resultSet = statement.executeQuery(query);
-            while (resultSet.next()) {
-                String courseCode = resultSet.getString("courseCode");
-                int studentId = resultSet.getInt("studentId");
-                int semesterId = resultSet.getInt("semesterId");
-                String grade = resultSet.getString("grade");
-                
-                Student student = studentsMap.get(studentId);
-                Course course = coursesMap.get(courseCode);
-                Grade gradeObject = new Grade(course, semesterId, grade);
-                student.getGradesList().add(gradeObject);
-            }
-            
-            for (Student student : studentsList)
-                System.out.println(student.getCgpa());
-            
-            for (Student student : studentsList)
-                student.computeCgpa();
+        gradeDAO = new GradeDAOMySQLImplementation(coursesMap);
 
-            // print a list of students who have failed at least 3 times
-            // do it with streams
-            */
-        } catch (SQLException ex) {
-            //Logger.getLogger(GradePrediction.class.getName()).log(Level.SEVERE, null, ex);
+        for (Student student : studentsList) {
+            List<Grade> gradesList = gradeDAO.getGrades(student);
+            student.getGradesList().clear();
+            student.getGradesList().addAll(gradesList);
         }
+
+        for (GradeEntry gradeEntry : GradeEntry.values())
+            System.out.println(gradeEntry.getLetterGrade() + " " + gradeEntry.getNumericGrade());
     }
-    
+
     public static void main(String args[]) {
         new GradePrediction();
     }

@@ -47,14 +47,13 @@ public class StudentDAOMySQLImplementation implements StudentDAO {
 
     @Override
     public Student getStudent(int studentId) {
-        //String query = "SELECT * FROM student WHERE studentId = " + studentId;
-        String query = "SELECT * FROM student WHERE studentId = ?;";
+        String query = "SELECT * FROM student WHERE studentId = " + studentId;
+        //String query = "SELECT * FROM student WHERE studentId = ?;";
         // Note to self: debug prepared statement for this method
-        PreparedStatement statement;
+        Statement statement;
         Student student = null;
         try {
-            statement = connection.prepareStatement(query);
-            statement.setString(1, studentId + "");
+            statement = connection.createStatement();
             System.out.println(statement);
             ResultSet resultSet = statement.executeQuery(query);
 
