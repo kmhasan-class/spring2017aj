@@ -1,0 +1,5 @@
+{
+  "studentId": "222",
+  "studentName": "J Doe",
+  "cgpa": 2.3
+}
