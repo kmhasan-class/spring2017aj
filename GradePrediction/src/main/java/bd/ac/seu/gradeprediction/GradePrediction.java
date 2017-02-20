@@ -42,8 +42,8 @@ public class GradePrediction {
             student.getGradesList().addAll(gradesList);
         }
 
-        for (GradeEntry gradeEntry : GradeEntry.values())
-            System.out.println(gradeEntry.getLetterGrade() + " " + gradeEntry.getNumericGrade());
+        GradeEntry g = GradeEntry.getGradeEntry("B+");
+        System.out.println(g);
     }
 
     public static void main(String args[]) {

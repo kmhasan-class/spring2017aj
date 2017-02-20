@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package bd.ac.seu.gradeprediction;
+import java.util.*;
 
 /**
  *
@@ -24,8 +25,20 @@ public enum GradeEntry {
     I               ("I" , 0.00);
     
     private String letterGrade;
+    private static Map<String, GradeEntry> letterToGradeMap;
     private double numericGrade;
 
+    static {
+        letterToGradeMap = new HashMap<>();
+        /*
+        letterToGradeMap.put("A+", A_PLUS);
+        letterToGradeMap.put("A", A);
+        letterToGradeMap.put("A-", A_MINUS);
+        */
+        for (GradeEntry gradeEntry : GradeEntry.values())
+            letterToGradeMap.put(gradeEntry.letterGrade, gradeEntry);
+    }
+    
     private GradeEntry(String letterGrade, double numericGrade) {
         this.letterGrade = letterGrade;
         this.numericGrade = numericGrade;
@@ -37,5 +50,9 @@ public enum GradeEntry {
 
     public double getNumericGrade() {
         return numericGrade;
+    }
+    
+    public static GradeEntry getGradeEntry(String letterGrade) {
+        return letterToGradeMap.get(letterGrade);
     }
 }
