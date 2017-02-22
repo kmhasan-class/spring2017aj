@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+  <session-factory>
+    <property name="hibernate.connection.username">spring2017aj</property>
+    <property name="hibernate.connection.password">aj</property>
+    <property name="hibernate.connection.url">jdbc:mysql://172.17.0.119/studentdb</property>
+  </session-factory>
+</hibernate-configuration>
