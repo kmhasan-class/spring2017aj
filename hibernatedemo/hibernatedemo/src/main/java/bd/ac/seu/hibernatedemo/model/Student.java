@@ -39,4 +39,8 @@ public class Student {
     public String toString() {
         return "Student{" + "studentId=" + studentId + ", studentName=" + studentName + '}';
     }
+    
+    public static void print(Student obj) {
+        System.out.println(obj.studentName);
+    }
 }
