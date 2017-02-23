@@ -5,12 +5,26 @@
  */
 package bd.ac.seu.hibernatedemo;
 
+import bd.ac.seu.hibernatedemo.model.Student;
+import bd.ac.seu.hibernatedemo.util.SessionFactorySingleton;
+import org.hibernate.Session;
+
 /**
  *
  * @author kmhasan
  */
 public class Main {
+
     public static void main(String args[]) {
-        System.out.println("Test");
+        Session session = SessionFactorySingleton.getSessionFactory().openSession();
+
+        session.beginTransaction();
+        Student student = new Student("54433", "Jane Doe");
+        session.save(student);
+        session.getTransaction().commit();
+
+        session.close();
+        
+        SessionFactorySingleton.getSessionFactory().close();
     }
 }
