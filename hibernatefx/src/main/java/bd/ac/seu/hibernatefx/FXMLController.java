@@ -1,5 +1,6 @@
 package bd.ac.seu.hibernatefx;
 
+import bd.ac.seu.hibernatefx.model.Phone;
 import bd.ac.seu.hibernatefx.model.Student;
 import bd.ac.seu.hibernatefx.util.HibernateUtil;
 import java.net.URL;
@@ -11,6 +12,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.collections.*;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 
 public class FXMLController implements Initializable {
 
@@ -25,5 +27,20 @@ public class FXMLController implements Initializable {
         
         Session session = HibernateUtil.getSessionFactory().openSession();
         studentsList.addAll(session.createCriteria(Student.class).list());
+        //session.close();
+        
+        //session = HibernateUtil.getSessionFactory().openSession();
+        
+        Transaction transaction = session.beginTransaction();
+        Phone p1 = new Phone(1, 880, 2, "23454");
+        Phone p2 = new Phone(2, 880, 2, "34456");
+        session.save(p1);
+        session.save(p2);
+        Student student = studentsList.get(2);
+        student.getPhonesList().add(p1);
+        student.getPhonesList().add(p2);
+        session.update(student);
+        transaction.commit();
+        session.close();
     }    
 }

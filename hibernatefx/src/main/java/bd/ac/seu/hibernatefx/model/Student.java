@@ -7,6 +7,8 @@ package bd.ac.seu.hibernatefx.model;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import java.util.*;
+import javax.persistence.OneToMany;
 
 /**
  *
@@ -17,11 +19,15 @@ public class Student {
     @Id
     private String studentId;
     private String studentName;
-
+    @OneToMany
+    private List<Phone> phonesList;
+    
     public Student() {
+        phonesList = new ArrayList<>();
     }
 
     public Student(String studentId, String studentName) {
+        this();
         this.studentId = studentId;
         this.studentName = studentName;
     }
@@ -37,5 +43,9 @@ public class Student {
     @Override
     public String toString() {
         return studentName;
+    }
+
+    public List<Phone> getPhonesList() {
+        return phonesList;
     }
 }
