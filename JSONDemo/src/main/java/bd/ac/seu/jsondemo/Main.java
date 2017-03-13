@@ -7,10 +7,14 @@ package bd.ac.seu.jsondemo;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
 import java.io.*;
 import java.net.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.*;
+import java.lang.reflect.Type;
+
 /**
  *
  * @author kmhasan
@@ -39,12 +43,18 @@ public class Main {
     
     public static void readFromURL() {
         try {
-            URL url = new URL("http://172.17.4.254/~kmhasan/__WebServices/spring2017aj/schedule_section_json.php?semester=45");
+            URL url = new URL("http://my.seu.ac.bd/~kmhasan/__WebServices/spring2017aj/schedule_section_json.php?semester=45");
             InputStream inputStream = url.openStream();
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
 
             String line = bufferedReader.readLine();
-            System.out.println(line);
+            
+            Gson gson = new GsonBuilder().create();
+            
+            Type sectionsListType = new TypeToken<List<Section>>(){}.getType();
+            List<Section> sectionsList = gson.fromJson(line, sectionsListType);
+            
+            sectionsList.forEach(System.out::println);
         } catch (MalformedURLException ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
