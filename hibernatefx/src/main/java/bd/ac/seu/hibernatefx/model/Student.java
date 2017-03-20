@@ -8,17 +8,23 @@ package bd.ac.seu.hibernatefx.model;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import java.util.*;
+import javax.persistence.Column;
+import javax.persistence.Embedded;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 /**
  *
  * @author kmhasan
  */
-@Entity(name = "student")
+@Entity(name = "student_table")
 public class Student {
     @Id
+    @Column(name = "student_id", length = 13)
     private String studentId;
     private String studentName;
+    @Embedded
+    private Address address;
     @OneToMany
     private List<Phone> phonesList;
     
