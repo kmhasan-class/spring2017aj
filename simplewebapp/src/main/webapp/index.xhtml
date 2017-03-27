@@ -8,7 +8,26 @@
     </h:head>
     <h:body>
         <h:form id="myform">
-            <p:inputText value="#{student.studentName}" />
+            <p:panelGrid columns="2">
+                <p:outputLabel value="Student ID" />
+                <p:inputText value="#{student.studentId}" />
+                
+                <p:outputLabel value="Student Name" />
+                <p:inputText value="#{student.studentName}" />
+                
+                <p:commandButton value="Submit" update="studentsTable" actionListener="#{student.saveStudent}" />
+                <p:commandButton value="Reset" />
+            </p:panelGrid>
+
+            <p:dataTable id="studentsTable" var="s" value="#{student.students}">
+                <p:column headerText="Student ID">
+                    <p:outputLabel value="#{s.studentId}" />
+                </p:column>
+                <p:column headerText="Student Name">
+                    <p:outputLabel value="#{s.studentName}" />
+                </p:column>
+            </p:dataTable>
+                
             Hello, <p:outputLabel value="#{student.studentName}" />!
             <br />
             <h:link outcome="welcomePrimefaces" value="Primefaces welcome page" />
