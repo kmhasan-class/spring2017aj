@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="200" prefWidth="320" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.40" fx:controller="ui.manipulation.FXMLDocumentController">
+   <children>
+      <VBox fx:id="vbox" prefHeight="200.0" prefWidth="318.0">
+         <children>
+            <ToolBar>
+               <items>
+                  <TextField prefHeight="26.0" prefWidth="195.0" promptText="Enter your phone number" />
+                  <Button mnemonicParsing="false" onAction="#handleAddAction" text="Add" />
+               </items>
+            </ToolBar>
+            <ToolBar>
+               <items>
+                  <TextField prefHeight="26.0" prefWidth="195.0" promptText="Enter your phone number" />
+                  <Button mnemonicParsing="false" text="Add" />
+               </items>
+            </ToolBar>
+            <ToolBar>
+               <items>
+                  <TextField prefHeight="26.0" prefWidth="195.0" promptText="Enter your phone number" />
+                  <Button mnemonicParsing="false" text="Add" />
+               </items>
+            </ToolBar>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>
