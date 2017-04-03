@@ -46,7 +46,7 @@ Contributor(s):
     <property name="hibernate.connection.driver_class">com.mysql.cj.jdbc.Driver</property>
     <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/contactdb?zeroDateTimeBehavior=convertToNull</property>
     <property name="hibernate.connection.username">spring2017aj</property>
-    <property name="hibernate.connection.password">java</property>
+    <property name="hibernate.connection.password">aj</property>
     <property name="hibernate.hbm2ddl.auto">update</property>
     <mapping class="bd.ac.seu.contactapp.model.Contact"/>
   </session-factory>
