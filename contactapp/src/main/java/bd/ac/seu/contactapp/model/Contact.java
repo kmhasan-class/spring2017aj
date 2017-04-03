@@ -6,6 +6,7 @@
 package bd.ac.seu.contactapp.model;
 
 import java.io.Serializable;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -24,6 +25,13 @@ public class Contact implements Serializable {
     private Long id;
     
     private String emailAddress;
+    @Embedded
+    private Name name;
+
+    public Contact() {
+        emailAddress = "somebody@somewhere.com";
+        name = new Name();
+    }
     
     public Long getId() {
         return id;
@@ -64,6 +72,14 @@ public class Contact implements Serializable {
 
     public void setEmailAddress(String emailAddress) {
         this.emailAddress = emailAddress;
+    }
+
+    public Name getName() {
+        return name;
+    }
+
+    public void setName(Name name) {
+        this.name = name;
     }
     
 }

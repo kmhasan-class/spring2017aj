@@ -15,12 +15,12 @@
             <p:panelGrid id="panel">
                 <p:row>
                     <p:column><p:outputLabel value="First Name" for="firstName" /></p:column>
-                    <p:column><p:inputText id="firstName" /></p:column>
+                    <p:column><p:inputText id="firstName" value="#{contactController.contact.name.firstName}" /></p:column>
                 </p:row>
 
                 <p:row>
                     <p:column><p:outputLabel value="Last Name" for="lastName" /></p:column>
-                    <p:column><p:inputText id="lastName" /></p:column>
+                    <p:column><p:inputText id="lastName" value="#{contactController.contact.name.lastName}" /></p:column>
                 </p:row>
 
                 <p:row>
@@ -30,7 +30,13 @@
 
                 <p:row>
                     <p:column><p:outputLabel value="Email Address" for="email" /></p:column>
-                    <p:column><p:inputText id="email" value="#{contactController.contact.emailAddress}" /></p:column>
+                    <p:column>
+                        <p:inputText id="email" value="#{contactController.contact.emailAddress}" required="true">
+                            <f:validateLength minimum="3" />
+                            <p:ajax update="messageEmail" event="keyup" />
+                        </p:inputText>
+                        <p:message id="messageEmail" for="email" />
+                    </p:column>
                 </p:row>
 
                 <p:row>
