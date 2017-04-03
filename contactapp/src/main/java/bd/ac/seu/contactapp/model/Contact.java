@@ -6,6 +6,10 @@
 package bd.ac.seu.contactapp.model;
 
 import java.io.Serializable;
+import java.util.Date;
+import javax.persistence.AttributeOverride;
+import javax.persistence.AttributeOverrides;
+import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -23,16 +27,56 @@ public class Contact implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    
+
     private String emailAddress;
     @Embedded
     private Name name;
+    private Date dob;
+    @Embedded
+    @AttributeOverrides(
+            {
+                @AttributeOverride(
+                        name = "streetAddress",
+                        column = @Column(name = "presentStreetAddress")
+                ),
+                @AttributeOverride(
+                        name = "city",
+                        column = @Column(name = "presentCity")
+                ),
+                @AttributeOverride(
+                        name = "country",
+                        column = @Column(name = "presentCountry")
+                )
+            }
+    )
+    private Address presentAddress;
+    @Embedded
+    @AttributeOverrides(
+            {
+                @AttributeOverride(
+                        name = "streetAddress",
+                        column = @Column(name = "permanentStreetAddress")
+                ),
+                @AttributeOverride(
+                        name = "city",
+                        column = @Column(name = "permanentCity")
+                ),
+                @AttributeOverride(
+                        name = "country",
+                        column = @Column(name = "permanentCountry")
+                )
+            }
+    )    
+    private Address permanentAddress;
 
     public Contact() {
         emailAddress = "somebody@somewhere.com";
         name = new Name();
+        dob = new Date();
+        presentAddress = new Address();
+        permanentAddress = new Address();
     }
-    
+
     public Long getId() {
         return id;
     }
@@ -81,5 +125,29 @@ public class Contact implements Serializable {
     public void setName(Name name) {
         this.name = name;
     }
-    
+
+    public Date getDob() {
+        return dob;
+    }
+
+    public void setDob(Date dob) {
+        this.dob = dob;
+    }
+
+    public Address getPresentAddress() {
+        return presentAddress;
+    }
+
+    public void setPresentAddress(Address presentAddress) {
+        this.presentAddress = presentAddress;
+    }
+
+    public Address getPermanentAddress() {
+        return permanentAddress;
+    }
+
+    public void setPermanentAddress(Address permanentAddress) {
+        this.permanentAddress = permanentAddress;
+    }
+
 }

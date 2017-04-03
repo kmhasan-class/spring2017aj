@@ -25,7 +25,7 @@
 
                 <p:row>
                     <p:column><p:outputLabel value="Date of Birth" for="dob" /></p:column>
-                    <p:column><p:calendar id="dob" /></p:column>
+                    <p:column><p:calendar id="dob" value="#{contactController.contact.dob}" /></p:column>
                 </p:row>
 
                 <p:row>
@@ -45,21 +45,21 @@
                             <p:tab title="Present Address">
                                 <p:panelGrid columns="2">
                                     <p:outputLabel value="Street Address" for="presentStreetAddress" />
-                                    <p:inputText id="presentStreetAddress" />
+                                    <p:inputText id="presentStreetAddress" value="#{contactController.contact.presentAddress.streetAddress}" />
                                     <p:outputLabel value="City" for="presentCity" />
-                                    <p:inputText id="presentCity" />
+                                    <p:inputText id="presentCity" value="#{contactController.contact.presentAddress.city}" />
                                     <p:outputLabel value="Country" for="presentCountry" />
-                                    <p:inputText id="presentCountry" />
+                                    <p:inputText id="presentCountry" value="#{contactController.contact.presentAddress.country}" />
                                 </p:panelGrid>
                             </p:tab>
                             <p:tab title="Permanent Address">
                                 <p:panelGrid columns="2">
                                     <p:outputLabel value="Street Address" for="permanentStreetAddress" />
-                                    <p:inputText id="permanentStreetAddress" />
+                                    <p:inputText id="permanentStreetAddress" value="#{contactController.contact.permanentAddress.streetAddress}" />
                                     <p:outputLabel value="City" for="permanentCity" />
-                                    <p:inputText id="permanentCity" />
+                                    <p:inputText id="permanentCity" value="#{contactController.contact.permanentAddress.city}" />
                                     <p:outputLabel value="Country" for="permanentCountry" />
-                                    <p:inputText id="permanentCountry" />
+                                    <p:inputText id="permanentCountry" value="#{contactController.contact.permanentAddress.country}" />
                                 </p:panelGrid>
                             </p:tab>
                         </p:accordionPanel>
