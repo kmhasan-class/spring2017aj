@@ -1,0 +1,99 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <title>Contacts App</title>
+    </h:head>
+    <h:body>
+        <h:form id="contactsForm">
+
+            <p:panelGrid id="panel">
+                <p:row>
+                    <p:column><p:outputLabel value="First Name" for="firstName" /></p:column>
+                    <p:column><p:inputText id="firstName" /></p:column>
+                </p:row>
+
+                <p:row>
+                    <p:column><p:outputLabel value="Last Name" for="lastName" /></p:column>
+                    <p:column><p:inputText id="lastName" /></p:column>
+                </p:row>
+
+                <p:row>
+                    <p:column><p:outputLabel value="Date of Birth" for="dob" /></p:column>
+                    <p:column><p:calendar id="dob" /></p:column>
+                </p:row>
+
+                <p:row>
+                    <p:column><p:outputLabel value="Email Address" for="email" /></p:column>
+                    <p:column><p:inputText id="email" value="#{contactController.contact.emailAddress}" /></p:column>
+                </p:row>
+
+                <p:row>
+                    <p:column colspan="2">
+                        <p:accordionPanel multiple="true" activeIndex="null">
+                            <p:tab title="Present Address">
+                                <p:panelGrid columns="2">
+                                    <p:outputLabel value="Street Address" for="presentStreetAddress" />
+                                    <p:inputText id="presentStreetAddress" />
+                                    <p:outputLabel value="City" for="presentCity" />
+                                    <p:inputText id="presentCity" />
+                                    <p:outputLabel value="Country" for="presentCountry" />
+                                    <p:inputText id="presentCountry" />
+                                </p:panelGrid>
+                            </p:tab>
+                            <p:tab title="Permanent Address">
+                                <p:panelGrid columns="2">
+                                    <p:outputLabel value="Street Address" for="permanentStreetAddress" />
+                                    <p:inputText id="permanentStreetAddress" />
+                                    <p:outputLabel value="City" for="permanentCity" />
+                                    <p:inputText id="permanentCity" />
+                                    <p:outputLabel value="Country" for="permanentCountry" />
+                                    <p:inputText id="permanentCountry" />
+                                </p:panelGrid>
+                            </p:tab>
+                        </p:accordionPanel>
+                    </p:column>
+                </p:row>
+                <p:row>
+                    <p:column colspan="2">
+                        <p:toolbar>
+                            <f:facet name="left">
+                                <p:inputText id="phone" />
+                                <p:commandButton value="Add Phone" />
+                            </f:facet>
+                        </p:toolbar>
+                    </p:column>
+                </p:row>
+                <p:row>
+                    <p:column colspan="2">
+                        <p:dataList var="car" type="ordered">
+                            <f:facet name="header">
+                                Phone Numbers
+                            </f:facet>
+                        </p:dataList>
+                    </p:column>
+                </p:row>
+                <p:row>
+                    <p:column colspan="2">
+                        <p:toolbar>
+                            <f:facet name="left">
+                                <p:commandButton value="Reset" update="panel" process="@this" >
+                                    <p:resetInput target="contactsForm" />
+                                </p:commandButton>
+                                <p:commandButton value="Submit" actionListener="#{contactController.addContact}" />
+                            </f:facet>
+                        </p:toolbar>
+                    </p:column>
+                </p:row>
+
+            </p:panelGrid>
+
+        </h:form>
+    </h:body>
+</html>
+
