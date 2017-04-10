@@ -19,7 +19,8 @@ import org.hibernate.Session;
 public class ContactController {
 
     private Contact contact;
-
+    private String phoneNumber;
+    
     public ContactController() {
         contact = new Contact();
     }
@@ -39,6 +40,19 @@ public class ContactController {
         session.save(contact);
         session.getTransaction().commit();
         session.close();
+    }
+    
+    public void addPhone(ActionEvent event) {
+        System.out.println("We're supposed to add " + phoneNumber);
+        contact.getPhonesList().add(phoneNumber);
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 
 }

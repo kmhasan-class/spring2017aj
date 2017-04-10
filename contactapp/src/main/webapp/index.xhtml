@@ -69,18 +69,23 @@
                     <p:column colspan="2">
                         <p:toolbar>
                             <f:facet name="left">
-                                <p:inputText id="phone" />
-                                <p:commandButton value="Add Phone" />
+                                <p:inputText id="phone" value="#{contactController.phoneNumber}">
+                                    <f:validator validatorId="validator.phoneValidator" />
+                                    <p:ajax update="phoneMessage" event="keyup" />
+                                </p:inputText>
+                                <p:message for="phone" id="phoneMessage" />
+                                <p:commandButton value="Add Phone" update="phonesDataList" actionListener="#{contactController.addPhone}" />
                             </f:facet>
                         </p:toolbar>
                     </p:column>
                 </p:row>
                 <p:row>
                     <p:column colspan="2">
-                        <p:dataList var="car" type="ordered">
+                        <p:dataList id="phonesDataList" var="phone" type="ordered" value="#{contactController.contact.phonesList}">
                             <f:facet name="header">
                                 Phone Numbers
                             </f:facet>
+                            #{phone}
                         </p:dataList>
                     </p:column>
                 </p:row>

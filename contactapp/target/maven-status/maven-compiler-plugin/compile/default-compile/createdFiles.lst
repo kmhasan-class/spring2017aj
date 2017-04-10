@@ -1,4 +1,6 @@
-bd/ac/seu/contactapp/util/HibernateUtil.class
 bd/ac/seu/contactapp/controller/ContactController.class
 bd/ac/seu/contactapp/model/Name.class
 bd/ac/seu/contactapp/model/Contact.class
+bd/ac/seu/contactapp/validator/PhoneValidator.class
+bd/ac/seu/contactapp/util/HibernateUtil.class
+bd/ac/seu/contactapp/model/Address.class

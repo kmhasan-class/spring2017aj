@@ -6,10 +6,13 @@
 package bd.ac.seu.contactapp.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.AttributeOverride;
 import javax.persistence.AttributeOverrides;
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -68,13 +71,19 @@ public class Contact implements Serializable {
             }
     )    
     private Address permanentAddress;
-
+    @ElementCollection
+    private List<String> phonesList;
+    
     public Contact() {
         emailAddress = "somebody@somewhere.com";
         name = new Name();
         dob = new Date();
         presentAddress = new Address();
         permanentAddress = new Address();
+        phonesList = new ArrayList<>();
+        phonesList.add("2441139");
+        phonesList.add("1234567");
+        phonesList.add("9876543");
     }
 
     public Long getId() {
@@ -148,6 +157,14 @@ public class Contact implements Serializable {
 
     public void setPermanentAddress(Address permanentAddress) {
         this.permanentAddress = permanentAddress;
+    }
+
+    public List<String> getPhonesList() {
+        return phonesList;
+    }
+
+    public void setPhonesList(List<String> phonesList) {
+        this.phonesList = phonesList;
     }
 
 }
