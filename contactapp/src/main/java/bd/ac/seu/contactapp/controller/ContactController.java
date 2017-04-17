@@ -7,7 +7,9 @@ package bd.ac.seu.contactapp.controller;
 
 import bd.ac.seu.contactapp.model.Contact;
 import bd.ac.seu.contactapp.util.HibernateUtil;
+import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ViewScoped;
 import javax.faces.event.ActionEvent;
 import org.hibernate.Session;
 
@@ -16,6 +18,7 @@ import org.hibernate.Session;
  * @author kmhasan
  */
 @ManagedBean
+@ViewScoped
 public class ContactController {
 
     private Contact contact;
@@ -40,6 +43,7 @@ public class ContactController {
         session.save(contact);
         session.getTransaction().commit();
         session.close();
+        contact = new Contact();
     }
     
     public void addPhone(ActionEvent event) {
@@ -56,3 +60,12 @@ public class ContactController {
     }
 
 }
+
+/*
+Hometasks: 
+1. Add a authentication page. Use this api: http://my.seu.ac.bd/~kmhasan/__WebServices/usscse/user_auth_json.php
+Use post method. Pass student id with "username" and password with "password" fields.
+2. Add a growl to show inform the user that contact information has been saved
+3. Add a browse option with proper features for browsing all the contacts.
+
+*/

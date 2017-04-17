@@ -17,8 +17,8 @@ public class Name {
     private String lastName;
 
     public Name() {
-        firstName = "John";
-        lastName = "Doe";
+        firstName = "";
+        lastName = "";
     }
 
     public String getFirstName() {

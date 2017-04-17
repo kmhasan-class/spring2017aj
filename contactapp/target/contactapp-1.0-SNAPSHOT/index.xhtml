@@ -96,7 +96,7 @@
                                 <p:commandButton value="Reset" update="panel" process="@this" >
                                     <p:resetInput target="contactsForm" />
                                 </p:commandButton>
-                                <p:commandButton value="Submit" actionListener="#{contactController.addContact}" />
+                                <p:commandButton value="Submit" update="panel" actionListener="#{contactController.addContact}" />
                             </f:facet>
                         </p:toolbar>
                     </p:column>

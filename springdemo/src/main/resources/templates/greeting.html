@@ -11,11 +11,14 @@ You can take help from: https://spring.io/guides/gs/serving-web-content/-->
 <!--You may run into problems with xmlns on this page. The guide won't be much
 helpful for that. Google is your friend!-->
 
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
     <head>
         <title>Greeting page</title>
     </head>
     <body>
+        <p th:text="'Hello, ' + ${fullname} + '!'" />
+        <p th:text='${logintime}' />
         <div>I'm here to greet you!</div>
     </body>
 </html>
